@@ -51,8 +51,7 @@ Aqui estão algumas capturas de tela da aplicação e do gerenciamento do banco 
 
 | Interface da Aplicação (PHP) |
 | :---: |
-| <img width="1605" height="828" alt="image" src="https://github.com/user-attachments/assets/15be842f-d727-4a86-9aa0-6b5edc9f85ae" />
- | 
+| <img width="1605" height="828" alt="image" src="https://github.com/user-attachments/assets/15be842f-d727-4a86-9aa0-6b5edc9f85ae" /> | 
 
 | Administração (phpMyAdmin) |
 | :---: |
