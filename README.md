@@ -9,6 +9,8 @@ Este projeto consiste em um ambiente de desenvolvimento conteinerizado para gere
 *   **Linguagem:** PHP 8.3.26
 *   **Banco de Dados:** MySQL 8.0.46 (Community Server - GPL)
 *   **Gerenciamento de BD:** phpMyAdmin 5.2.3
+*   **Contexto de Dados:** Personagens da série **Suits** (Pearson Hardman)
+
 
 ## 🏗️ Infraestrutura de Pastas
 
