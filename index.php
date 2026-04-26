@@ -45,6 +45,7 @@
 	$password   = "Senha123";
 	$database   = "projetodb";
 
+
 	try {
 		$dsn = "mysql:host=$servername;dbname=$database;charset=utf8mb4";
 		$options = [
@@ -52,16 +53,13 @@
 			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 			PDO::ATTR_EMULATE_PREPARES   => false,
 		];
-
 		$pdo = new PDO($dsn, $username, $password, $options);
-		$status_conexao = "Conectado com sucesso via PDO (OO)!";
-
-		// Inicializa o repositório e busca os dados
 		$repo = new PessoaRepository($pdo);
 		$listaPessoas = $repo->listarTodos();
-
+		$status_conexao = ["success", "Conexão estabelecida com sucesso."];
 	} catch (PDOException $e) {
-		$status_conexao = "Erro: " . $e->getMessage();
+		$status_conexao = ["danger", "Erro de conexão: " . $e->getMessage()];
+		$listaPessoas = [];
 	}
 ?>
 
@@ -69,31 +67,52 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-		<title>Exemplo PHP OO com PDO</title>
-		<style>
-			.pessoa-card { border-bottom: 1px solid #eee; padding: 5px; }
-		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Dashboard | Suits Cast</title>
+		
+		<!-- Google Fonts -->
+		<link href="https://googleapis.com" rel="stylesheet">
+		
+		<!-- IMPORTANTE: Chama o arquivo CSS externo -->
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<h3>Versão Atual do PHP: <?php echo phpversion(); ?></h3>
-		<p><strong>Status:</strong> <?php echo $status_conexao; ?></p>
-
-		<hr>
-
-		<?php if (isset($listaPessoas) && !empty($listaPessoas)): ?>
-			<?php foreach ($listaPessoas as $p): ?>
-				<div class="pessoa-card">
-					<?php 
-						// Usando os métodos do objeto Pessoa
-						echo htmlspecialchars($p->getNome()) . " | " . 
-							 htmlspecialchars($p->getCidade()) . " | R$ " . 
-							 number_format($p->getSalario(), 2, ',', '.'); 
-					?>
+		<!-- O restante do seu código HTML/PHP continua igual -->
+		<div class="container">
+			<header>
+				<div>
+					<h1>Personagens Suits</h1>
+					<small>Versão Atual do PHP<?php echo phpversion(); ?></small>
 				</div>
-			<?php endforeach; ?>
-		<?php elseif (isset($pdo)): ?>
-			<p>Nenhum registro encontrado na tabela.</p>
-		<?php endif; ?>
+				<span class="badge <?php echo $status_conexao[0]; ?>">
+					<?php echo $status_conexao[1]; ?>
+				</span>
+			</header>
 
+			<?php if (!empty($listaPessoas)): ?>
+				<table>
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Cidade</th>
+							<th>Salário</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($listaPessoas as $p): ?>
+							<tr>
+								<td><strong><?php echo htmlspecialchars($p->getNome()); ?></strong></td>
+								<td><?php echo htmlspecialchars($p->getCidade()); ?></td>
+								<td class="salario">R$ <?php echo number_format($p->getSalario(), 2, ',', '.'); ?></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php else: ?>
+				<div class="empty-state">
+					<p>Nenhum registro encontrado na base de dados.</p>
+				</div>
+			<?php endif; ?>
+		</div>
 	</body>
 </html>
