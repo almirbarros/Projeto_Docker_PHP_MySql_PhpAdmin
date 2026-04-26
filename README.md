@@ -43,3 +43,21 @@ Para acessar os serviços via navegador, utilize as seguintes portas:
 1. Navegue até a pasta do compose: `cd /compose/projeto-php-mysql`
 2. Suba os containers: `docker-compose up -d`
 3. Acesse o PHP em: `http://localhost:4550`
+
+## 📸 Demonstração do Projeto
+
+Aqui estão algumas capturas de tela da aplicação e do gerenciamento do banco de dados:
+
+
+| Interface da Aplicação (PHP) |
+| :---: |
+| <img width="434" height="442" alt="image" src="https://github.com/user-attachments/assets/84e92be2-8c06-47ac-a297-02c347e3641c" /> | 
+
+| Administração (phpMyAdmin) |
+| :---: |
+| <img width="1580" height="799" alt="image" src="https://github.com/user-attachments/assets/74da1653-9d6a-4704-9cb4-8b47cab9b6bc" /> |
+
+
+
+
+
